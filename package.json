@@ -7,7 +7,7 @@
     "start": "nodemon --exec babel-node ./src/index.js",
     "lint": "eslint --ignore-path .gitignore ./src",
     "build": "babel src --out-dir ./dist --source-maps",
-    "serve": "node ./dist/index.js",
+    "server": "node ./dist/index.js",
     "debug": "node --inspect-brk ./dist/index.js",
     "test": "./node_modules/.bin/mocha --compilers js:@babel/register"
   },
@@ -30,10 +30,16 @@
     "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "mocha": "^6.2.2",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "watch": "^1.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "express": "^4.17.1",
+    "npm-run-all": "^4.1.5",
+    "pg": "^7.12.1"
   }
 }
