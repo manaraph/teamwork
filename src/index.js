@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsers, createUser } from "./db";
+import { getUsers, createUser, updateUser, deleteUser } from "./db";
 
 const app = express();
 
@@ -15,6 +15,8 @@ app.get('/', (request, response) => {
 // SQL end points
 app.get('/employees', getUsers);
 app.post('/employees', createUser)
+app.put('/employees/:id', updateUser)
+app.delete('/employees/:id', deleteUser)
 
 
 app.listen(port, () => {
