@@ -12,11 +12,11 @@ app.get('/', (request, response) => {
 });
 
 
-// SQL end points
-app.get('/employees', getUsers);
-app.post('/employees', createUser)
-app.put('/employees/:id', updateUser)
-app.delete('/employees/:id', deleteUser)
+// API end points
+app.get('/api/v1/employees', getUsers);
+app.post('/api/v1//employees', createUser)
+app.put('/api/v1//employees/:id', updateUser)
+app.delete('/api/v1//employees/:id', deleteUser)
 
 
 app.listen(port, () => {
