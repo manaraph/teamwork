@@ -5,8 +5,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-console.log(process.env.DATABASE_URL);
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
@@ -25,18 +23,18 @@ const getUsers = (request, response) => {
 }
 const createUser = (request, response) => { 
   console.log('Creating user');
-  console.log(request);
+  console.log(request.query);
   
      
-  // const{email, firstname, lastname, password} = request.body;
+  const{email, firstname, lastname, password} = request.query;
 
-  // pool.query('INSERT INTO employees (email, firstname, lastname, password) VALUES ($1, $2, $3, $4)', [email, firstname, lastname, crypt( password, gen_salt('bf')) ], (error, results) => {
-  //     if(error){
-  //         throw error;
-  //     }
-  //     response.status(201).send(`User added with ID: ${results}`);
-  // })
-  // console.log('User created');
+  pool.query('INSERT INTO employees (email, firstname, lastname, password) VALUES ($1, $2, $3, $4)', [email, firstname, lastname, password], (error, results) => {
+      if(error){
+          throw error;
+      }
+      response.status(201).send(`User added with ID: ${results}`);
+  })
+  console.log('User created');
 }
 
 module.exports = {
