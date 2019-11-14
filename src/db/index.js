@@ -1,8 +1,9 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
+
+console.log('In db');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -20,27 +21,40 @@ const getUsers = (request, response) => {
     response.status(200).json(results.rows);
   });
 };
-const createUser = (request, response) => {
+
+// const createUser = (request, response) => {
+//   console.log('Creating user');
+//   console.log(request.query);
+
+
+//   const {
+//     email, firstname, lastname, password, role,
+//   } = request.query;
+
+//   pool.query('INSERT INTO employees (email, firstname, lastname, password, role) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, password, role], (error, results) => {
+//     if (error) {
+//       throw error;
+//     }
+//     console.log(results);
+
+//     response.status(201).send(`User added with ID: ${results}`);
+//   });
+//   console.log('User created');
+// };
+
+const createUser = (email, firstname, lastname, role, password) => {
   console.log('Creating user');
-  console.log(request.query);
 
-
-  const {
-    email, firstname, lastname, password, role,
-  } = request.query;
-
-  pool.query('INSERT INTO employees (email, firstname, lastname, password, role) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, password, role], (error, results) => {
+  pool.query('INSERT INTO employees (email, firstname, lastname, role, password) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, role, password], (error, results) => {
     if (error) {
       throw error;
     }
     console.log(results);
 
-    response.status(201).send(`User added with ID: ${results}`);
+    // response.status(201).send(`User added with ID: ${results}`);
   });
   console.log('User created');
 };
-
-
 const updateUser = (request, response) => {
   const id = parseInt(request.params.id);
   const {
@@ -71,9 +85,35 @@ const deleteUser = (request, response) => {
   });
 };
 
+const verifyUser = (email) => {
+  pool.query('SELECT * FROM employees WHERE email = $1', [email], (error, results) => {
+    if (error) {
+      console.log(error);
+      
+      throw error;
+    }
+    console.log(results);
+    // response.status(200).send(`User deleted with ID: ${id}`);
+  });
+};
+
+const findUserById = (id) => {
+  pool.query('SELECT * FROM employees WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      console.log(error);
+      
+      throw error;
+    }
+    console.log(results);
+    // response.status(200).send(`User deleted with ID: ${id}`);
+  });
+};
+
 module.exports = {
   getUsers,
   createUser,
   updateUser,
   deleteUser,
+  verifyUser,
+  findUserById,
 };
