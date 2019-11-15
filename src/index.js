@@ -6,14 +6,16 @@ import {
   deleteUser,
 } from './db';
 import passport from "passport";
-// const passport = require('passport');
-import passportService from './services/passport';
+import './services/passport';
 import { signIn, signUp } from "./auth";
+
+const bodyParser = require('body-parser');
 
 console.log('Ín root');
 
 
 const app = express();
+app.use(bodyParser.json());
 const router = express.Router();
 
 const port = 3500;

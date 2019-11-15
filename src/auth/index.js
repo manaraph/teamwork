@@ -20,7 +20,7 @@ const signUp = (req, res, next) => {
   console.log(req);
   
   const { email, firstname, lastname, role, password } = req.body;
-  const saltRounds = 12;
+  const saltRounds = 8;
 
   if(!email || !password) {
     res.status(422).send({ error: 'You must provide an email and a password.'})
