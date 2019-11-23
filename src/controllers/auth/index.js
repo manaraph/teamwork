@@ -1,6 +1,6 @@
 const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt');
-import { createUser } from '../db';
+import { createUser } from '../../db';
 import dotenv from 'dotenv';
 
 dotenv.config();

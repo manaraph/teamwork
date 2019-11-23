@@ -2,7 +2,7 @@ import express from 'express';
 import { getUsers } from './db';
 import passport from "passport";
 import './services/passport';
-import { signIn, createNewUser } from "./auth";
+import { signIn, createNewUser } from "./controllers/auth";
 
 const bodyParser = require('body-parser');
 
