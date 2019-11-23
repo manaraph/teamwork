@@ -28,8 +28,11 @@ const jwtOption = {
   secretOrKey: process.env.SECRET
 }
 
+
 const jwtLogin = new JwtStrategy(jwtOption, (payload, done) => {
   return findUserById(payload.sub).then( foundUser => {
+    console.log(foundUser);
+    
     if (foundUser) {
       return done(null, foundUser);
     }

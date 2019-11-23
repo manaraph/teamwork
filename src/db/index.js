@@ -82,15 +82,7 @@ const verifyUser = (email) => {
 };
 
 const findUserById = (id) => {
-  pool.query('SELECT * FROM employees WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      console.log(error);
-      
-      throw error;
-    }
-    // console.log(results);
-    // response.status(200).send(`User deleted with ID: ${id}`);
-  });
+   return pool.query('SELECT * FROM employees WHERE id = $1', [id]);
 };
 
 module.exports = {
