@@ -22,26 +22,6 @@ const getUsers = (request, response) => {
   });
 };
 
-// const createUser = (request, response) => {
-//   console.log('Creating user');
-//   console.log(request.query);
-
-
-//   const {
-//     email, firstname, lastname, password, role,
-//   } = request.query;
-
-//   pool.query('INSERT INTO employees (email, firstname, lastname, password, role) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, password, role], (error, results) => {
-//     if (error) {
-//       throw error;
-//     }
-//     console.log(results);
-
-//     response.status(201).send(`User added with ID: ${results}`);
-//   });
-//   console.log('User created');
-// };
-
 const createUser = (email, firstname, lastname, role, password) => {
   console.log('Creating user');
   return pool.query('INSERT INTO employees (email, firstname, lastname, role, password) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, role, password]);
