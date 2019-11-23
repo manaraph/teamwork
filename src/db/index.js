@@ -81,8 +81,9 @@ const verifyUser = (email) => {
   return pool.query('SELECT * FROM employees WHERE email = $1',  [email]);
 };
 
-const findUserById = (id) => {
-   return pool.query('SELECT * FROM employees WHERE id = $1', [id]);
+const findUserById = (user) => {  
+  const {id} = user;
+   return pool.query('SELECT role FROM employees WHERE id = $1', [id]);
 };
 
 module.exports = {

@@ -13,7 +13,7 @@ dotenv.config();
 const localOptions = { usernameField: 'email' };
 
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
-  verifyUser(email).then( validUser => {
+  verifyUser(email).then( validUser => {    
       bcrypt.compare(password, validUser.rows[0].password).then( validPassword => {
       if (validPassword) {
         return done(null, validUser);
@@ -30,8 +30,12 @@ const jwtOption = {
 
 
 const jwtLogin = new JwtStrategy(jwtOption, (payload, done) => {
+  console.log(payload.sub.rows[0].role);
+  // console.log(payload);
+  
+  
   return findUserById(payload.sub).then( foundUser => {
-    console.log(foundUser);
+    // console.log(foundUser);
     
     if (foundUser) {
       return done(null, foundUser);

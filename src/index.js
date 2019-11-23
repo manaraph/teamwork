@@ -1,7 +1,6 @@
 import express from 'express';
 import {
   getUsers,
-  // createUser,
   updateUser,
   deleteUser,
 } from './db';
@@ -21,13 +20,6 @@ const port = 3500;
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignIn = passport.authenticate('local', { session: false });
-
-// app.get('/', (request, response) => {
-//   response.json({
-//     info: 'Node.js, Express, and Postgres API',
-//   });
-// });
-
 
 // API end points
 app.get('/api/v1/employees', requireAuth, getUsers);

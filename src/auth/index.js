@@ -9,7 +9,7 @@ dotenv.config();
 
 const tokenForUser = user => {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.SECRET);
+  return jwt.encode({ sub: user, iat: timestamp }, process.env.SECRET);
 }
 
 const signIn = (req, res, next) => {
