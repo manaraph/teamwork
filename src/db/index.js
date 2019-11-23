@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('In db');
+// console.log('In db');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -44,19 +44,7 @@ const getUsers = (request, response) => {
 
 const createUser = (email, firstname, lastname, role, password) => {
   console.log('Creating user');
-
-  // pool.query('INSERT INTO employees (email, firstname, lastname, role, password) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, role, password], (error, results) => {
-  //   if (error) {
-  //     throw error;
-  //   }
-  //   console.log(results);
-
-  //   // response.status(201).send(`User added with ID: ${results}`);
-  //   // response.status(201).send(results);
-  //   return results;
-  // });
   return pool.query('INSERT INTO employees (email, firstname, lastname, role, password) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, role, password]);
-  // console.log('User created');
 };
 
 const updateUser = (request, response) => {
@@ -90,16 +78,6 @@ const deleteUser = (request, response) => {
 };
 
 const verifyUser = (email) => {
-  // return pool.query('SELECT * FROM employees WHERE email = $1', [email], (error, results) => {
-  //   if (error) {
-  //     console.log(error);
-      
-  //     throw error;
-  //   }
-  //   // console.log(results);
-  //   // response.status(200).send(`User deleted with ID: ${id}`);
-  //   // return results;
-  // });
   return pool.query('SELECT * FROM employees WHERE email = $1',  [email]);
 };
 
@@ -110,7 +88,7 @@ const findUserById = (id) => {
       
       throw error;
     }
-    console.log(results);
+    // console.log(results);
     // response.status(200).send(`User deleted with ID: ${id}`);
   });
 };

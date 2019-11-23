@@ -11,12 +11,11 @@ import { signIn, signUp } from "./auth";
 
 const bodyParser = require('body-parser');
 
-console.log('Ín root');
+// console.log('Ín root');
 
 
 const app = express();
 app.use(bodyParser.json());
-// const router = express.Router();
 
 const port = 3500;
 

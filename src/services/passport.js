@@ -8,23 +8,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('passport service');
+// console.log('passport service');
 
 const localOptions = { usernameField: 'email' };
 
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
-  // return pool.query('SELECT * FROM employees WHERE email = $1', [email], (error, results) => {
-  //   if (error) {
-  //     console.log(error);
-      
-  //     throw error;
-  //   }
-  //   // console.log(results);
-  //   // response.status(200).send(`User deleted with ID: ${id}`);
-  //   // return results;
-  // });
   verifyUser(email).then( validUser => {
-    // bcrypt.compare(password, validUser.password).then( validPassword => {
       bcrypt.compare(password, validUser.rows[0].password).then( validPassword => {
       if (validPassword) {
         return done(null, validUser);
