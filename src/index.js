@@ -1,17 +1,10 @@
 import express from 'express';
-import {
-  getUsers,
-  updateUser,
-  deleteUser,
-} from './db';
+import { getUsers } from './db';
 import passport from "passport";
 import './services/passport';
-import { signIn, signUp } from "./auth";
+import { signIn, createNewUser } from "./auth";
 
 const bodyParser = require('body-parser');
-
-// console.log('Ín root');
-
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,13 +16,9 @@ const requireAdminAuth = passport.authenticate('jwt-admin', { session: false });
 const requireSignIn = passport.authenticate('local', { session: false });
 
 // API end points
-app.get('/api/v1/employees', requireAuth, getUsers);
-// app.post('/api/v1//employees', createUser);
-// app.put('/api/v1//employees/:id', updateUser);
-// app.delete('/api/v1//employees/:id', deleteUser);
-
-app.post('/create-user', requireAdminAuth, signUp);
-app.post('/signin', requireSignIn, signIn);
+app.get('/api/v1/employees', requireAdminAuth, getUsers);
+app.post('/api/v1/create-user', requireAdminAuth, createNewUser);
+app.post('/api/v1/signin', requireAuth, signIn);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
