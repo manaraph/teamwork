@@ -16,7 +16,7 @@ const signIn = (req, res, next) => {
   res.send({ token: tokenForUser(req.user) });
 }
 
-const signUp = (req, res, next) => {  
+const signUp = (req, res, next) => {    
   const { email, firstname, lastname, role, password } = req.body;
   const saltRounds = 8;
 

@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 const port = 3500;
 
 const requireAuth = passport.authenticate('jwt', { session: false });
+const requireAdminAuth = passport.authenticate('jwt-admin', { session: false });
 const requireSignIn = passport.authenticate('local', { session: false });
 
 // API end points
@@ -27,7 +28,7 @@ app.get('/api/v1/employees', requireAuth, getUsers);
 // app.put('/api/v1//employees/:id', updateUser);
 // app.delete('/api/v1//employees/:id', deleteUser);
 
-app.post('/create-user', requireAuth, signUp);
+app.post('/create-user', requireAdminAuth, signUp);
 app.post('/signin', requireSignIn, signIn);
 
 app.listen(port, () => {
