@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   getUsers,
-  createUser,
+  // createUser,
   updateUser,
   deleteUser,
 } from './db';
@@ -16,7 +16,7 @@ console.log('Ín root');
 
 const app = express();
 app.use(bodyParser.json());
-const router = express.Router();
+// const router = express.Router();
 
 const port = 3500;
 
@@ -36,8 +36,8 @@ app.get('/api/v1/employees', getUsers);
 // app.put('/api/v1//employees/:id', updateUser);
 // app.delete('/api/v1//employees/:id', deleteUser);
 
-router.post('/signup', signUp);
-router.post('/signin', requireSignIn, signIn);
+app.post('/signup', signUp);
+app.post('/signin', requireSignIn, signIn);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);

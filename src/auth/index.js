@@ -27,7 +27,11 @@ const signUp = (req, res, next) => {
   }
 
   bcrypt.hash(password, saltRounds).then( hash => {
+    console.log(hash);
+    
     return createUser(email, firstname, lastname, role, hash).then( newUser => {
+      console.log('New user', newUser);
+      
       res.json({ token: tokenForUser(newUser) });
     }).catch( err => {
       console.log(err);
