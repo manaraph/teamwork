@@ -1,8 +1,9 @@
 import express from 'express';
-import { getUsers } from './db';
+import { getUsers, createArticle } from './db';
 import passport from "passport";
 import './services/passport';
 import { signIn, createNewUser } from "./controllers/auth";
+// import { createArticle } from "./controllers/articles";
 
 const bodyParser = require('body-parser');
 
@@ -18,7 +19,8 @@ const requireSignIn = passport.authenticate('local', { session: false });
 // API end points
 app.get('/api/v1/employees', requireAdminAuth, getUsers);
 app.post('/api/v1/create-user', requireAdminAuth, createNewUser);
-app.post('/api/v1/signin', requireAuth, signIn);
+app.post('/api/v1/signin', requireSignIn, signIn);
+app.post('/api/v1/articles', requireAuth, createArticle);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
