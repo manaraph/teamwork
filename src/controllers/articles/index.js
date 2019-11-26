@@ -43,7 +43,30 @@ const editArticle = (req, res) => {
   });
 }
 
+const deleteArticle = (req, res) => {
+
+  const article_id = req.params.articleId;
+
+  pool.query('DELETE FROM articles WHERE article_id=$1', [article_id],  (error, results) => {
+    if (error) {
+      console.log(error);
+      res.status(500).json({
+        status: "error",
+        error: "There was an error processing your request."
+      })
+      throw error;
+    }
+    // console.log(results);
+    
+    res.status(200).json({
+      status: "success",
+      messages: "Your article was deleted"
+    });
+  });
+}
+
 module.exports = {
   createArticle,
   editArticle,
+  deleteArticle,
 }
