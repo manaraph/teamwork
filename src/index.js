@@ -4,6 +4,7 @@ import passport from "passport";
 import './services/passport';
 import { signIn, createNewUser } from "./controllers/auth";
 import { createArticle, editArticle, deleteArticle } from "./controllers/articles";
+import { createComment } from "./controllers/articles/comments";
 
 const bodyParser = require('body-parser');
 
@@ -23,6 +24,7 @@ app.post('/api/v1/signin', requireSignIn, signIn);
 app.post('/api/v1/articles', requireAuth, createArticle);
 app.put('/api/v1/articles/:articleId', requireAuth, editArticle);
 app.delete('/api/v1/articles/:articleId', requireAuth, deleteArticle);
+app.post('/api/v1/articles/:articleId/comments', requireAuth, createComment);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
