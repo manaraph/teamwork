@@ -5,8 +5,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// console.log('In auth');
-
 const tokenForUser = user => {
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user, iat: timestamp }, process.env.SECRET);
