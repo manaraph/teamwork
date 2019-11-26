@@ -1,9 +1,9 @@
 import express from 'express';
-import { getUsers, createArticle } from './db';
+import { getUsers } from './db';
 import passport from "passport";
 import './services/passport';
 import { signIn, createNewUser } from "./controllers/auth";
-// import { createArticle } from "./controllers/articles";
+import { createArticle } from "./controllers/articles";
 
 const bodyParser = require('body-parser');
 
