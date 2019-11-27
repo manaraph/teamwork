@@ -1,10 +1,12 @@
-const passport = require('passport');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const { verifyUser, findUserById } = require('../db')
-const LocalStrategy = require('passport-local');
-const bcrypt = require('bcrypt');
+import passport from "passport";
+// const JwtStrategy = require('passport-jwt').Strategy;
+// const ExtractJwt = require('passport-jwt').ExtractJwt;
+import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
+import LocalStrategy from "passport-local";
+import bcrypt from "bcrypt";
 import dotenv from 'dotenv';
+
+const { verifyUser, findUserById } = require('../controllers/user')
 
 dotenv.config();
 

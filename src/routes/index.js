@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers } from '../db';
+import { getUsers } from '../controllers/user';
 import { signIn, createNewUser } from "../controllers/auth";
 import { createArticle, editArticle, deleteArticle } from "../controllers/articles";
 import { createComment } from "../controllers/articles/comments";

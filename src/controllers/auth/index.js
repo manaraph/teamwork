@@ -1,6 +1,6 @@
-const jwt = require('jwt-simple');
-const bcrypt = require('bcrypt');
-import { createUser } from '../../db';
+import jwt from "jwt-simple";
+import bcrypt from "bcrypt";
+import { createUser } from '../user';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -22,7 +22,9 @@ const createNewUser = (req, res, next) => {
     res.status(422).send({ error: 'You must provide an email and a password.'})
   }
 
-  bcrypt.hash(password, saltRounds).then( hash => {    
+  bcrypt.hash(password, saltRounds).then( hash => {   
+    console.log('In here');
+     
     return createUser(email, firstname, lastname, role, hash).then( newUser => {      
       res.json({ token: tokenForUser(newUser) });
     }).catch( err => {
