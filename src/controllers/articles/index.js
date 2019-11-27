@@ -62,13 +62,29 @@ const deleteArticle = (req, res) => {
   });
 }
 
-const getArticles = (request, response) => {
+const getArticles = (req, res) => {
+
   pool.query('SELECT * FROM articles ORDER BY created_at DESC', (error, results) => {
     if (error) {
       throw error;
     }
 
-    response.status(200).json({
+    res.status(200).json({
+      status: "success",
+      data: results.rows
+    });
+  });
+};
+
+const getArticleById = (req, res) => {
+  const article_id = req.params.articleId;
+
+  pool.query('SELECT * FROM articles WHERE article_id = $1', [article_id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+
+    res.status(200).json({
       status: "success",
       data: results.rows
     });
@@ -80,4 +96,5 @@ module.exports = {
   editArticle,
   deleteArticle,
   getArticles,
+  getArticleById,
 }
