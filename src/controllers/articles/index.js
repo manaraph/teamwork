@@ -12,7 +12,6 @@ const createArticle = (req, res) => {
       })
       throw error;
     }
-    // console.log(results);
     
     res.status(200).json({
       status: "success",
@@ -34,7 +33,6 @@ const editArticle = (req, res) => {
       })
       throw error;
     }
-    // console.log(results);
     
     res.status(200).json({
       status: "success",
@@ -56,8 +54,7 @@ const deleteArticle = (req, res) => {
       })
       throw error;
     }
-    // console.log(results);
-    
+
     res.status(200).json({
       status: "success",
       messages: "Your article was deleted"
@@ -65,8 +62,22 @@ const deleteArticle = (req, res) => {
   });
 }
 
+const getArticles = (request, response) => {
+  pool.query('SELECT * FROM articles ORDER BY created_at DESC', (error, results) => {
+    if (error) {
+      throw error;
+    }
+
+    response.status(200).json({
+      status: "success",
+      data: results.rows
+    });
+  });
+};
+
 module.exports = {
   createArticle,
   editArticle,
   deleteArticle,
+  getArticles,
 }
