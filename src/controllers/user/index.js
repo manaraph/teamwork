@@ -10,7 +10,6 @@ const getUsers = (request, response) => {
 };
 
 const createUser = (email, firstname, lastname, role, password) => {
-  console.log('creating user');
   
   return pool.query('INSERT INTO employees (email, firstname, lastname, role, password) VALUES ($1, $2, $3, $4, $5)', [email, firstname, lastname, role, password]);
 };

@@ -23,7 +23,6 @@ const createNewUser = (req, res, next) => {
   }
 
   bcrypt.hash(password, saltRounds).then( hash => {   
-    console.log('In here');
      
     return createUser(email, firstname, lastname, role, hash).then( newUser => {      
       res.json({ token: tokenForUser(newUser) });

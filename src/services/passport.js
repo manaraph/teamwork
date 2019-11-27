@@ -1,6 +1,4 @@
 import passport from "passport";
-// const JwtStrategy = require('passport-jwt').Strategy;
-// const ExtractJwt = require('passport-jwt').ExtractJwt;
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from "passport-local";
 import bcrypt from "bcrypt";
@@ -9,8 +7,6 @@ import dotenv from 'dotenv';
 const { verifyUser, findUserById } = require('../controllers/user')
 
 dotenv.config();
-
-// console.log('passport service');
 
 const localOptions = { usernameField: 'email' };
 
